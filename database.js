@@ -1,15 +1,10 @@
-import mysql from "mysql2";
+const mysql = require("mysql2");
 
-const pool = mysql.createPool({
-    host : "localhost",
-    user : "root",
-    password : "root",
-    database : "memoire"
-}).promise()
+const db = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "memoire",
+});
 
-async function getInfo() {
-    const [rows] = await pool.query("select * from Users");
-    return rows[0];
-}
-
-console.log(await getInfo());
+module.exports = db;
